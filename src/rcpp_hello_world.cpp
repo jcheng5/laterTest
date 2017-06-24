@@ -20,7 +20,7 @@ protected:
   }
   
   void complete() {
-    Rprintf("Result is %f", result);
+    Rprintf("Result is %f\n", result);
   }
   
 private:
@@ -28,6 +28,7 @@ private:
   double result;
 };
 
+//' @export
 // [[Rcpp::export]]
 void asyncMean(Rcpp::NumericVector data) {
   (new MyTask(data))->begin();
@@ -39,6 +40,7 @@ void say(void* data) {
   delete str;
 }
 
+//' @export
 // [[Rcpp::export]]
 void sayLater(std::string message, double delay) {
   std::string* str = new std::string(message);
